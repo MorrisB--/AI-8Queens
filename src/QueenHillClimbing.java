@@ -27,9 +27,10 @@ public class QueenHillClimbing {
 
 		// CODE FOR THE FIRST QUEEN
 
-		int collisions = 0;
-		while (collisions<100) {
-
+		int collisions = 1, looped =0;
+		while (collisions>0) {
+			looped++;
+collisions =0;
 			// Checking the first queen
 			int i = 0;
 			int j = 0;
@@ -38,34 +39,36 @@ public class QueenHillClimbing {
 				if (board[i][0] == 1)
 					break;
 
-			boolean stillChecking = true;
+			boolean stillCheckingDU = true;
+			boolean stillCheckingDD = true;
+			boolean stillCheckingH = true;
 			int iTempDU = i, jTempDU = j, iTempDD = i, jTempDD = j, iTempH = i, jTempH = j;
 			int totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -76,6 +79,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached bottom
 				if (i == 7) {
 					board[i][j] = 0;
@@ -96,7 +100,9 @@ public class QueenHillClimbing {
 				if (board[i][1] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;
 			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
@@ -105,31 +111,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -140,6 +146,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached bottom
 				if (i == 7) {
 					board[i][j] = 0;
@@ -160,8 +167,9 @@ public class QueenHillClimbing {
 				if (board[i][2] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
-			iTempDU = i;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
 			jTempDD = j;
@@ -169,31 +177,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -204,6 +212,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached bottom
 				if (i == 7) {
 					board[i][j] = 0;
@@ -224,8 +233,9 @@ public class QueenHillClimbing {
 				if (board[i][3] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
-			iTempDU = i;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
 			jTempDD = j;
@@ -233,31 +243,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -268,6 +278,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached
 				// bottom
 				if (i == 7) {
@@ -289,8 +300,9 @@ public class QueenHillClimbing {
 				if (board[i][4] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
-			iTempDU = i;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
 			jTempDD = j;
@@ -298,31 +310,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -333,6 +345,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached
 				// bottom
 				if (i == 7) {
@@ -354,8 +367,9 @@ public class QueenHillClimbing {
 				if (board[i][5] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
-			iTempDU = i;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
 			jTempDD = j;
@@ -363,31 +377,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -398,6 +412,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached
 				// bottom
 				if (i == 7) {
@@ -419,8 +434,9 @@ public class QueenHillClimbing {
 				if (board[i][6] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
-			iTempDU = i;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
 			jTempDD = j;
@@ -428,31 +444,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -463,6 +479,7 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached bottom
 				if (i == 7) {
 					board[i][j] = 0;
@@ -483,8 +500,9 @@ public class QueenHillClimbing {
 				if (board[i][7] == 1) // ----- CHANGE THIS -----
 					break;
 
-			stillChecking = true;
-			iTempDU = i;
+			 stillCheckingDU = true;
+			 stillCheckingDD = true;
+			 stillCheckingH = true;			iTempDU = i;
 			jTempDU = j;
 			iTempDD = i;
 			jTempDD = j;
@@ -492,31 +510,31 @@ public class QueenHillClimbing {
 			jTempH = j;
 
 			totalCollisions = 0;
-			while (stillChecking) {
+			while (stillCheckingDU || stillCheckingDD || stillCheckingH) {
 
 				// Diagonal up
 				if (iTempDU - 1 >= 0 && jTempDU + 1 < board.length) {
 					if (board[iTempDU - 1][jTempDU + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDU = true;
 				} else
-					stillChecking = false;
+					stillCheckingDU = false;
 
 				// Diagonal down
 				if (iTempDD + 1 < board.length && jTempDD + 1 < board.length) {
 					if (board[iTempDD + 1][jTempDD + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingDD = true;
 				} else
-					stillChecking = false;
+					stillCheckingDD = false;
 
 				// Horizontal
 				if (jTempH + 1 < board.length) {
 					if (board[iTempH][jTempH + 1] == 1)
 						totalCollisions++;
-					stillChecking = true;
+					stillCheckingH = true;
 				} else
-					stillChecking = false;
+					stillCheckingH = false;
 
 				iTempDU--;
 				jTempDU++;
@@ -527,7 +545,19 @@ public class QueenHillClimbing {
 			}
 
 			if (totalCollisions > 0) {
+				collisions++;
 				// Move the queen to top of column if we reached bottom
+				if (i == 7) {
+					board[i][j] = 0;
+					board[0][j] = 1;
+				} else {
+					board[i][j] = 0;
+					board[i + 1][j] = 1;
+				}
+			}
+			
+			if (looped == 10000){
+				looped = 0;
 				if (i == 7) {
 					board[i][j] = 0;
 					board[0][j] = 1;
@@ -538,7 +568,6 @@ public class QueenHillClimbing {
 			}
 
 			// BOARD STUFF
-collisions++;
 		}
 		
 		for (int i = 0; i < board.length; i++) {
