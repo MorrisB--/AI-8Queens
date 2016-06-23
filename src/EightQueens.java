@@ -20,7 +20,7 @@ public class EightQueens {
 
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
-					MoveQueen(board, i, j);
+					MoveQueen(board, j, i);
 					numberOfAttacks = TotalNumberOfAttacks(board);
 					if (numberOfAttacks < leastNumberOfAttacks) {
 						leastNumberOfAttacks = numberOfAttacks;
@@ -34,6 +34,13 @@ public class EightQueens {
 				System.out.println("Moved the queen " + i + " to [" + bestRowIndex + "]");
 				System.out.println("Number of total attacks: " + TotalNumberOfAttacks(board));
 
+				// This will print all the solutions it can find add below to break once it finds a single solution
+				
+				/*
+				 * if (numberOfAttacks == 0)
+				 * 		break;
+				 */
+				
 			}
 		}
 
