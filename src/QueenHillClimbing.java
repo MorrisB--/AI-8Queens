@@ -27,8 +27,8 @@ public class QueenHillClimbing {
 
 		// CODE FOR THE FIRST QUEEN
 
-		boolean collisions = true;
-		while (collisions) {
+		int collisions = 0;
+		while (collisions<100) {
 
 			// Checking the first queen
 			int i = 0;
@@ -538,7 +538,7 @@ public class QueenHillClimbing {
 			}
 
 			// BOARD STUFF
-collisions = false;
+collisions++;
 		}
 		
 		for (int i = 0; i < board.length; i++) {
