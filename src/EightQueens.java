@@ -5,42 +5,34 @@ public class EightQueens {
 
 	public static void main(String[] args) {
 		int board[][] = new int[8][8];
-		int numberOfAttacks = 0;
+		int numberOfAttakcs = 0;
 		int bestRowIndex = 0;
 
 		InitializeBoard(board);
 		PlaceQueens(board);
 		System.out.println("Initial Board: ");
 		PrintBoard(board);
-		numberOfAttacks = TotalNumberOfAttacks(board);
-		System.out.println("Number of total attacks: " + numberOfAttacks + "\n");
+		numberOfAttakcs = TotalNumberOfAttacks(board);
+		System.out.println("Number of total attacks: " + numberOfAttakcs + "\n");
 
-		while (numberOfAttacks != 0) {
-			int leastNumberOfAttacks = 28;
-
+		while (numberOfAttakcs != 0) {
 			for (int i = 0; i < 8; i++) {
+				int leastNumberOfAttacks = 28;
 				for (int j = 0; j < 8; j++) {
 					MoveQueen(board, j, i);
-					numberOfAttacks = TotalNumberOfAttacks(board);
-					if (numberOfAttacks < leastNumberOfAttacks) {
-						leastNumberOfAttacks = numberOfAttacks;
+					numberOfAttakcs = TotalNumberOfAttacks(board);
+					if (numberOfAttakcs < leastNumberOfAttacks) {
+						leastNumberOfAttacks = numberOfAttakcs;
 						bestRowIndex = j;
 					}
 				}
 				MoveQueen(board, bestRowIndex, i);
 				PrintBoard(board);
-				numberOfAttacks = TotalNumberOfAttacks(board);
-
-				System.out.println("Moved the queen " + i + " to [" + bestRowIndex + "]");
-				System.out.println("Number of total attacks: " + TotalNumberOfAttacks(board));
-
-				// This will print all the solutions it can find add below to break once it finds a single solution
-				
-				/*
-				 * if (numberOfAttacks == 0)
-				 * 		break;
-				 */
-				
+				numberOfAttakcs = TotalNumberOfAttacks(board);
+				System.out.println("Moved the queen " + i + " to [" + bestRowIndex + "," + i + "]");
+				System.out.println("Number of total attacks: " + numberOfAttakcs + "\n");
+				if (numberOfAttakcs == 0)
+					break;
 			}
 		}
 
