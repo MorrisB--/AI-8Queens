@@ -18,6 +18,7 @@ public class SimulatedAnnealing {
 		while (numberOfAttakcs != 0) {
 			for (int i = 0; i < 8; i++) {
 				int leastNumberOfAttacks = 28;
+				// This will find the best location
 				for (int j = 0; j < 8; j++) {
 					MoveQueen(board, j, i);
 					numberOfAttakcs = TotalNumberOfAttacks(board);
@@ -26,6 +27,14 @@ public class SimulatedAnnealing {
 						bestRowIndex = j;
 					}
 				}
+				// Now we need to find a random location
+				int randomBestRowIndex = (int) (Math.random() * 7);
+				int randomLeastNumberOfAttacks = 0;
+				MoveQueen(board, randomBestRowIndex, i);
+				randomLeastNumberOfAttacks = TotalNumberOfAttacks(board);
+
+				if(leastNumberOfAttacks - randomLeastNumberOfAttacks / javatimehere >leastNumberOfAttacks) // do something
+					//else do nothing
 				MoveQueen(board, bestRowIndex, i);
 				PrintBoard(board);
 				numberOfAttakcs = TotalNumberOfAttacks(board);
@@ -44,6 +53,20 @@ public class SimulatedAnnealing {
 		}
 		brd[row][column] = 1;
 	}
+
+	go row
+	by row
+choose random spot for
+	queen current
+	locations collisions
+	minus random
+	loaction of
+	collisions
+divided
+	by time
+
+consider taking
+	absolute value
 
 	public static int TotalNumberOfAttacks(int[][] brd) {
 		return NumberOfDiagonalAttacks(brd) + NumberOfHorizontalAttacks(brd);
