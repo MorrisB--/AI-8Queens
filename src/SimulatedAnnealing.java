@@ -7,6 +7,7 @@ public class SimulatedAnnealing {
 		int board[][] = new int[8][8];
 		int numberOfAttakcs = 0;
 		int bestRowIndex = 0;
+		long time = System.currentTimeMillis();
 
 		InitializeBoard(board);
 		PlaceQueens(board);
@@ -29,17 +30,25 @@ public class SimulatedAnnealing {
 				}
 				// Now we need to find a random location
 				int randomBestRowIndex = (int) (Math.random() * 7);
-				int randomLeastNumberOfAttacks = 0;
 				MoveQueen(board, randomBestRowIndex, i);
-				randomLeastNumberOfAttacks = TotalNumberOfAttacks(board);
 
-				if(leastNumberOfAttacks - randomLeastNumberOfAttacks / javatimehere >leastNumberOfAttacks) // do something
-					//else do nothing
-				MoveQueen(board, bestRowIndex, i);
+				/*
+				 * If Math.random * time is less than 100 then we can take the
+				 * risk of moving the queen to a random location. Over time the
+				 * queen will not be moved randomly.
+				 */
+				if ((long) (Math.random() * 10) * time < 100) {
+					MoveQueen(board, randomBestRowIndex, i);
+					System.out.println("Moved the queen " + i + " to [" + randomBestRowIndex + "," + i + "]");
+				} else {
+					MoveQueen(board, bestRowIndex, i);
+					System.out.println("Moved the queen " + i + " to [" + bestRowIndex + "," + i + "]");
+				}
+
 				PrintBoard(board);
 				numberOfAttakcs = TotalNumberOfAttacks(board);
-				System.out.println("Moved the queen " + i + " to [" + bestRowIndex + "," + i + "]");
 				System.out.println("Number of total attacks: " + numberOfAttakcs + "\n");
+
 				if (numberOfAttakcs == 0)
 					break;
 			}
@@ -53,20 +62,6 @@ public class SimulatedAnnealing {
 		}
 		brd[row][column] = 1;
 	}
-
-	go row
-	by row
-choose random spot for
-	queen current
-	locations collisions
-	minus random
-	loaction of
-	collisions
-divided
-	by time
-
-consider taking
-	absolute value
 
 	public static int TotalNumberOfAttacks(int[][] brd) {
 		return NumberOfDiagonalAttacks(brd) + NumberOfHorizontalAttacks(brd);
